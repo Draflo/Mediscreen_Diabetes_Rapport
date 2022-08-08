@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import mediscreen.proxy.Patient;
@@ -30,6 +31,12 @@ public class TestController {
 	public List<PatientsHistory> getAllPatientsHistories() {
 		List<PatientsHistory> findAll = patientHistoryService.getAllPatientsHistories();
 		return findAll;
+	}
+	
+	@GetMapping("/patientHistory")
+	public PatientsHistory getPatientsHistoryByFirstAndLastName(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName ) throws Exception {
+		PatientsHistory patientsHistory = patientHistoryService.getPatientsHistoryByName(firstName, lastName);
+		return patientsHistory;
 	}
 
 }

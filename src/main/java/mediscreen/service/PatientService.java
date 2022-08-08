@@ -21,4 +21,8 @@ public class PatientService {
 	public List<Patient> getAllPatients() {
 		return proxy.getAllPatients();
 	}
+	
+	public Patient getPatientByName(String firstName, String lastName) {
+		return proxy.getPatientByName(firstName, lastName);
+	}
 }
