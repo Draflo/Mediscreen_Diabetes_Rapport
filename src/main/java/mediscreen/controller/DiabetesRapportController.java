@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import mediscreen.proxy.Assess;
+import mediscreen.DTO.Assess;
 import mediscreen.proxy.Patient;
 import mediscreen.proxy.PatientsHistory;
 import mediscreen.service.DiabetesRapportService;

@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+
+  mysqlhost:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_USERNAME: root
+      MYSQL_ROOT_PASSWORD: rootroot
+    ports:
+       - 3307:3307
+    volumes:
+      - "./mysql/config/my.conf:/etc/mysql/conf.d/config-file.cnf"
+      - "./mysql/data:/var/lib/mysql:rw"
+      
+  mongohost:
+    image: mongo
+    ports:
+      - 27017:27017
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - "./mongodb/data/db:/data/db:rw"
+      
+  patient:
+    image: patient
+    container_name: patient
+    ports:
+      - "8081:8080"
+    networks:
+      - default
+    restart: always
+
+  patienthistory:
+    image: patienthistory
+    container_name: patienthistory
+    ports:
+      - "8082:8080"
+    networks:
+      - default
+    restart: always
+
+  patientrapport:
+    image: patientrapport
+    container_name: patientrapport
+    ports:
+      - "8080:8080"
+    networks:
+      - default
+    restart: always
